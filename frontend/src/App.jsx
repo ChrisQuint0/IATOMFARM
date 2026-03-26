@@ -57,7 +57,7 @@ function App() {
   useEffect(() => {
     const checkHealth = async () => {
       try {
-        const response = await fetch('/api/health')
+        const response = await fetch('http://localhost:8000/health')
         setHealthStatus(response.ok ? 'connected' : 'error')
       } catch {
         setHealthStatus('disconnected')
@@ -136,7 +136,7 @@ function App() {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ 
+        body: JSON.stringify({
           cards,
           deck_name: deckName
         }),
@@ -280,8 +280,8 @@ function App() {
                 <h3 className="text-2xl sm:text-3xl font-display font-black text-slate-900 tracking-tight leading-none mb-1">Generated Cards</h3>
                 <div className="flex items-center gap-2 text-slate-500 group">
                   <span className="text-xs font-black uppercase tracking-widest shrink-0">Deck Name:</span>
-                  <input 
-                    type="text" 
+                  <input
+                    type="text"
                     value={deckName}
                     onChange={(e) => setDeckName(e.target.value)}
                     className="bg-transparent border-none p-0 font-bold text-brand focus:ring-0 text-sm w-full outline-none hover:bg-brand/5 rounded px-1 transition-colors"
@@ -457,7 +457,7 @@ function App() {
                   onClick={handleGenerate}
                   className="w-full bg-brand text-white py-3.5 sm:py-4 rounded-[1.5rem] font-black tracking-tight text-base sm:text-lg shadow-xl shadow-brand/30 hover:scale-[1.02] active:scale-[0.98] transition-all flex items-center justify-center gap-3"
                 >
-                  Spark AI Generation <Check className="w-5 h-5 sm:w-6 h-6" />
+                  Generate
                 </button>
               </div>
             </div>
@@ -477,7 +477,7 @@ function App() {
             <p className="text-slate-500 font-medium mb-6 sm:mb-8 leading-relaxed text-[11px] sm:text-sm">
               IATOMFARM uses the free Gemini API tier. This means there are fixed usage quotas that we cannot exceed:
             </p>
-            
+
             <div className="grid grid-cols-1 gap-2 sm:gap-3 mb-6 sm:mb-8">
               {[
                 { label: 'RPM', value: '15 Req / Min', icon: Activity },
@@ -492,11 +492,11 @@ function App() {
             </div>
 
             <div className="p-3 sm:p-4 bg-amber-50 border border-amber-100 rounded-xl sm:rounded-2xl text-amber-800 text-[10px] sm:text-xs font-medium leading-relaxed mb-6 sm:mb-8">
-              If generation fails or is stuck, the limits might have been consumed. 
+              If generation fails or is stuck, the limits might have been consumed.
               Increased limits are not possible without funding.
             </div>
 
-            <button 
+            <button
               onClick={() => setIsLimitModalOpen(false)}
               className="w-full bg-slate-900 text-white py-3 sm:py-4 rounded-xl sm:rounded-2xl font-black tracking-tight text-sm sm:text-base hover:scale-[1.02] active:scale-[0.98] transition-all"
             >
