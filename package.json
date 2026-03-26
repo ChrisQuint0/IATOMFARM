@@ -1,0 +1,12 @@
+{
+  "name": "iatomfarm",
+  "version": "1.0.0",
+  "scripts": {
+    "dev:frontend": "npm run dev --prefix frontend",
+    "dev:backend": "backend\\.venv\\Scripts\\python.exe -m uvicorn main:app --reload --app-dir backend --port 8000 --host 0.0.0.0",
+    "dev": "concurrently -n \"frontend,backend\" -c \"blue,green\" \"npm run dev:frontend\" \"npm run dev:backend\""
+  },
+  "devDependencies": {
+    "concurrently": "^9.1.2"
+  }
+}
