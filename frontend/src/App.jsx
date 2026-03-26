@@ -106,7 +106,7 @@ function App() {
     formData.append('include_enumeration', settings.includeEnumeration)
 
     try {
-      const response = await fetch('http://localhost:8000/upload', {
+      const response = await fetch('/api/upload', {
         method: 'POST',
         body: formData,
       })
@@ -131,7 +131,7 @@ function App() {
     if (cards.length === 0) return
 
     try {
-      const response = await fetch(`http://localhost:8000/export/${settings.format}`, {
+      const response = await fetch(`/api/export/${settings.format}`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

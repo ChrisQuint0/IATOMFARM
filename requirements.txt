@@ -1,0 +1,10 @@
+fastapi
+uvicorn
+python-multipart
+pymupdf
+python-docx
+google-generativeai
+python-dotenv
+genanki
+fpdf2
+python-pptx
