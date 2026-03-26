@@ -57,7 +57,7 @@ function App() {
   useEffect(() => {
     const checkHealth = async () => {
       try {
-        const response = await fetch('http://localhost:8000/health')
+        const response = await fetch('/api/health')
         setHealthStatus(response.ok ? 'connected' : 'error')
       } catch {
         setHealthStatus('disconnected')
