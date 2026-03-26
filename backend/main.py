@@ -94,9 +94,12 @@ async def upload_document(
         }
 
     except Exception as e:
+        error_msg = str(e)
+        if "429" in error_msg or "Quota exceeded" in error_msg:
+            raise HTTPException(status_code=429, detail="API Rate Limit Reached: The AI is currently busy. Please wait about 60 seconds and try again.")
         if isinstance(e, HTTPException):
             raise e
-        raise HTTPException(status_code=500, detail=f"Error processing document: {str(e)}")
+        raise HTTPException(status_code=500, detail=f"Error processing document: {error_msg}")
 
 @app.post("/export/{format}")
 async def export_cards(format: str, request: ExportRequest):

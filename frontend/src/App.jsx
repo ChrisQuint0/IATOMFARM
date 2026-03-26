@@ -253,8 +253,24 @@ function App() {
             </div>
 
             {error && (
-              <div className="mt-12 max-w-xl mx-auto p-4 bg-rose-50 border border-rose-100 rounded-xl text-rose-700 font-medium text-center animate-in shake duration-300">
-                {error}
+              <div className="mt-12 max-w-xl mx-auto p-6 bg-rose-50 border border-rose-100 rounded-[2rem] text-rose-800 animate-in shake duration-300 shadow-xl shadow-rose-900/5">
+                <div className="flex flex-col items-center gap-4 text-center">
+                  <div className="w-12 h-12 bg-rose-100 rounded-2xl flex items-center justify-center">
+                    <ShieldAlert className="w-6 h-6 text-rose-600" />
+                  </div>
+                  <div>
+                    <h4 className="font-black uppercase tracking-widest text-[10px] text-rose-400 mb-1">Issue Detected</h4>
+                    <p className="font-bold text-sm leading-relaxed">{error}</p>
+                  </div>
+                  {error.includes('Rate Limit') && (
+                    <button 
+                      onClick={() => setIsLimitModalOpen(true)}
+                      className="text-xs font-black uppercase tracking-widest text-brand hover:underline"
+                    >
+                      Why is this happening?
+                    </button>
+                  )}
+                </div>
               </div>
             )}
           </div>
